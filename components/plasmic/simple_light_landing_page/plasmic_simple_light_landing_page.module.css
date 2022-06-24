@@ -31,40 +31,47 @@
   --mixin-gbxaPgtgEsVsMV_font-weight: 900;
   --mixin-gbxaPgtgEsVsMV_letter-spacing: -4px;
   --mixin-gbxaPgtgEsVsMV_line-height: 1;
+  --mixin-gbxaPgtgEsVsMV_white-space: pre-wrap;
   --mixin-quNPbl8zaIvukY_font-family: "Inter";
   --mixin-quNPbl8zaIvukY_color: #000000;
   --mixin-quNPbl8zaIvukY_font-size: 48px;
   --mixin-quNPbl8zaIvukY_font-weight: 700;
   --mixin-quNPbl8zaIvukY_letter-spacing: -1px;
   --mixin-quNPbl8zaIvukY_line-height: 1.1;
+  --mixin-quNPbl8zaIvukY_white-space: pre-wrap;
   --mixin-Ln12VtZnDBzKJe_font-family: "Inter";
   --mixin-Ln12VtZnDBzKJe_color: #000000;
   --mixin-Ln12VtZnDBzKJe_font-size: 32px;
   --mixin-Ln12VtZnDBzKJe_font-weight: 600;
   --mixin-Ln12VtZnDBzKJe_letter-spacing: -0.8px;
   --mixin-Ln12VtZnDBzKJe_line-height: 1.2;
+  --mixin-Ln12VtZnDBzKJe_white-space: pre-wrap;
   --mixin-I0SdfL_hgrmp8i_font-family: "Inter";
   --mixin-I0SdfL_hgrmp8i_color: #000000;
   --mixin-I0SdfL_hgrmp8i_font-size: 24px;
   --mixin-I0SdfL_hgrmp8i_font-weight: 600;
   --mixin-I0SdfL_hgrmp8i_letter-spacing: -0.5px;
   --mixin-I0SdfL_hgrmp8i_line-height: 1.3;
+  --mixin-I0SdfL_hgrmp8i_white-space: pre-wrap;
   --mixin-6sYlI7LTChwFwl_font-family: "Inter";
   --mixin-6sYlI7LTChwFwl_color: #000000;
   --mixin-6sYlI7LTChwFwl_font-size: 20px;
   --mixin-6sYlI7LTChwFwl_font-weight: 600;
   --mixin-6sYlI7LTChwFwl_letter-spacing: -0.3px;
   --mixin-6sYlI7LTChwFwl_line-height: 1.5;
+  --mixin-6sYlI7LTChwFwl_white-space: pre-wrap;
   --mixin-DGXVdP7IXNdXu8_font-family: "Inter";
   --mixin-DGXVdP7IXNdXu8_color: #000000;
   --mixin-DGXVdP7IXNdXu8_font-size: 16px;
   --mixin-DGXVdP7IXNdXu8_font-weight: 600;
   --mixin-DGXVdP7IXNdXu8_line-height: 1.5;
+  --mixin-DGXVdP7IXNdXu8_white-space: pre-wrap;
   --mixin-rE8sAXSEriPc4b_border-left-color: #dddddd;
   --mixin-rE8sAXSEriPc4b_border-left-style: solid;
   --mixin-rE8sAXSEriPc4b_border-left-width: 3px;
   --mixin-rE8sAXSEriPc4b_color: #888888;
   --mixin-rE8sAXSEriPc4b_padding-left: 10px;
+  --mixin-rE8sAXSEriPc4b_white-space: pre-wrap;
   --mixin-tvLFOISjMJFL_7_background: linear-gradient(#f8f8f8, #f8f8f8);
   --mixin-tvLFOISjMJFL_7_border-bottom-color: #dddddd;
   --mixin-tvLFOISjMJFL_7_border-bottom-style: solid;
@@ -87,6 +94,7 @@
   --mixin-tvLFOISjMJFL_7_padding-left: 4px;
   --mixin-tvLFOISjMJFL_7_padding-right: 4px;
   --mixin-tvLFOISjMJFL_7_padding-top: 1px;
+  --mixin-tvLFOISjMJFL_7_white-space: pre-wrap;
   --mixin-5Mq8QDZfSyaMr2_background: linear-gradient(#f8f8f8, #f8f8f8);
   --mixin-5Mq8QDZfSyaMr2_border-bottom-color: #dddddd;
   --mixin-5Mq8QDZfSyaMr2_border-bottom-style: solid;
@@ -109,6 +117,7 @@
   --mixin-5Mq8QDZfSyaMr2_padding-left: 6px;
   --mixin-5Mq8QDZfSyaMr2_padding-right: 6px;
   --mixin-5Mq8QDZfSyaMr2_padding-top: 3px;
+  --mixin-5Mq8QDZfSyaMr2_white-space: pre-wrap;
   --mixin-CKbjq6rn1UrYSG_display: flex;
   --mixin-CKbjq6rn1UrYSG_flex-direction: column;
   --mixin-CKbjq6rn1UrYSG_align-items: stretch;
@@ -117,6 +126,7 @@
   --mixin-CKbjq6rn1UrYSG_padding-left: 40px;
   --mixin-CKbjq6rn1UrYSG_position: relative;
   --mixin-CKbjq6rn1UrYSG_list-style-type: decimal;
+  --mixin-CKbjq6rn1UrYSG_white-space: pre-wrap;
   --mixin-Qc8MhJ80dxuaUZ_display: flex;
   --mixin-Qc8MhJ80dxuaUZ_flex-direction: column;
   --mixin-Qc8MhJ80dxuaUZ_align-items: stretch;
@@ -125,6 +135,7 @@
   --mixin-Qc8MhJ80dxuaUZ_padding-left: 40px;
   --mixin-Qc8MhJ80dxuaUZ_position: relative;
   --mixin-Qc8MhJ80dxuaUZ_list-style-type: disc;
+  --mixin-Qc8MhJ80dxuaUZ_white-space: pre-wrap;
 }
 
 :where(.all) {

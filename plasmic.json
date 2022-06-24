@@ -403,6 +403,11 @@
           "id": "wDrd5DmAa",
           "name": "image",
           "filePath": "../public/plasmic/ai_advice_engine/images/image.png"
+        },
+        {
+          "id": "m3gHZuBjE",
+          "name": "ABCDE.png",
+          "filePath": "../public/plasmic/ai_integration_engine/images/abcdEpng.png"
         }
       ],
       "indirect": false,
