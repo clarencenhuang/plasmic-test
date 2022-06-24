@@ -116,8 +116,9 @@ function PlasmicHomeCta__RenderFunc(props: {
             projectcss.__wab_text,
             sty.text__gqxGi
           )}
+          ml-model-id={"test-12332" as const}
         >
-          {"Here is a really good product advice"}
+          {"Here is a really good product advice Today"}
         </div>
 
         <div
