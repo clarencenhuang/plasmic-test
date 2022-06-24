@@ -63,7 +63,6 @@ export type PlasmicHomeCta__OverridesType = {
   root?: p.Flex<"div">;
   textInput?: p.Flex<typeof TextInput>;
   button?: p.Flex<typeof Button>;
-  img?: p.Flex<typeof p.PlasmicImg>;
   svg?: p.Flex<"svg">;
   textbox?: p.Flex<typeof TextInput>;
 };
@@ -152,26 +151,6 @@ function PlasmicHomeCta__RenderFunc(props: {
           >
             {"Buy It Now!"}
           </Button>
-
-          <p.PlasmicImg
-            data-plasmic-name={"img"}
-            data-plasmic-override={overrides.img}
-            alt={""}
-            className={classNames(sty.img)}
-            displayHeight={"auto" as const}
-            displayMaxHeight={"none" as const}
-            displayMaxWidth={"100%" as const}
-            displayMinHeight={"0" as const}
-            displayMinWidth={"0" as const}
-            displayWidth={"auto" as const}
-            loading={"lazy" as const}
-            src={{
-              src: "/plasmic/ai_advice_engine/images/image.png",
-              fullWidth: 400,
-              fullHeight: 335,
-              aspectRatio: undefined
-            }}
-          />
         </p.Stack>
 
         <div
@@ -200,10 +179,9 @@ function PlasmicHomeCta__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "textInput", "textbox", "button", "img", "svg"],
+  root: ["root", "textInput", "textbox", "button", "svg"],
   textInput: ["textInput", "textbox"],
   button: ["button"],
-  img: ["img"],
   svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -213,7 +191,6 @@ type NodeDefaultElementType = {
   root: "div";
   textInput: typeof TextInput;
   button: typeof Button;
-  img: typeof p.PlasmicImg;
   svg: "svg";
 };
 
@@ -276,7 +253,6 @@ export const PlasmicHomeCta = Object.assign(
     // Helper components rendering sub-elements
     textInput: makeNodeComponent("textInput"),
     button: makeNodeComponent("button"),
-    img: makeNodeComponent("img"),
     svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicHomeCta
