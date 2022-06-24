@@ -99,7 +99,7 @@ export interface DefaultTextInputProps extends pp.BaseTextInputProps {
 }
 
 export const defaultTextInput__Args: Partial<PlasmicTextInput__ArgsType> = {
-  placeholder: "Enter something…" as const
+  placeholder: "What is your mood" as const
 };
 
 function PlasmicTextInput__RenderFunc(props: {

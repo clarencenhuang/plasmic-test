@@ -117,7 +117,7 @@ function PlasmicHomeCta__RenderFunc(props: {
             sty.text__gqxGi
           )}
         >
-          {"Powering your business"}
+          {"Here is a really good product"}
         </div>
 
         <div
@@ -127,9 +127,7 @@ function PlasmicHomeCta__RenderFunc(props: {
             sty.text__kFeth
           )}
         >
-          {
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit nemo expedita voluptas culpa sapiente."
-          }
+          {"You should buy XYZ"}
         </div>
 
         <p.Stack
@@ -142,7 +140,7 @@ function PlasmicHomeCta__RenderFunc(props: {
             data-plasmic-override={overrides.textInput}
             className={classNames("__wab_instance", sty.textInput)}
             color={"dark" as const}
-            placeholder={"Your email..." as const}
+            placeholder={"Whats your mood?" as const}
           />
 
           <Button
@@ -151,7 +149,7 @@ function PlasmicHomeCta__RenderFunc(props: {
             className={classNames("__wab_instance", sty.button)}
             color={"blue" as const}
           >
-            {"Subscribe"}
+            {"Buy It Now!"}
           </Button>
         </p.Stack>
 
