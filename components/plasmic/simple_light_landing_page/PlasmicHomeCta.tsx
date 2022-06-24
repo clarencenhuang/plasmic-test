@@ -117,7 +117,7 @@ function PlasmicHomeCta__RenderFunc(props: {
             sty.text__gqxGi
           )}
         >
-          {"Here is a really good product"}
+          {"Here is a really good product advice"}
         </div>
 
         <div
@@ -160,7 +160,7 @@ function PlasmicHomeCta__RenderFunc(props: {
             sty.text__srQjf
           )}
         >
-          {"{{output.mlmodel}}"}
+          {"{{gpuModel.output}}"}
         </div>
       </p.Stack>
 
