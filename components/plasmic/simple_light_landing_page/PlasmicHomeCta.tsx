@@ -62,6 +62,7 @@ export const PlasmicHomeCta__ArgProps = new Array<ArgPropType>();
 export type PlasmicHomeCta__OverridesType = {
   root?: p.Flex<"div">;
   textInput?: p.Flex<typeof TextInput>;
+  img?: p.Flex<typeof p.PlasmicImg>;
   button?: p.Flex<typeof Button>;
   svg?: p.Flex<"svg">;
   textbox?: p.Flex<typeof TextInput>;
@@ -118,7 +119,7 @@ function PlasmicHomeCta__RenderFunc(props: {
           )}
           ml-model-id={"test-12332" as const}
         >
-          {"Here is a really good product advice Today"}
+          {"Here is a really good product advice"}
         </div>
 
         <div
@@ -142,6 +143,26 @@ function PlasmicHomeCta__RenderFunc(props: {
             className={classNames("__wab_instance", sty.textInput)}
             color={"dark" as const}
             placeholder={"Whats your mood?" as const}
+          />
+
+          <p.PlasmicImg
+            data-plasmic-name={"img"}
+            data-plasmic-override={overrides.img}
+            alt={""}
+            className={classNames(sty.img)}
+            displayHeight={"auto" as const}
+            displayMaxHeight={"none" as const}
+            displayMaxWidth={"100%" as const}
+            displayMinHeight={"0" as const}
+            displayMinWidth={"0" as const}
+            displayWidth={"auto" as const}
+            loading={"lazy" as const}
+            src={{
+              src: "/plasmic/ai_advice_engine/images/image.png",
+              fullWidth: 400,
+              fullHeight: 335,
+              aspectRatio: undefined
+            }}
           />
 
           <Button
@@ -180,8 +201,9 @@ function PlasmicHomeCta__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "textInput", "textbox", "button", "svg"],
+  root: ["root", "textInput", "textbox", "img", "button", "svg"],
   textInput: ["textInput", "textbox"],
+  img: ["img"],
   button: ["button"],
   svg: ["svg"]
 } as const;
@@ -191,6 +213,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   textInput: typeof TextInput;
+  img: typeof p.PlasmicImg;
   button: typeof Button;
   svg: "svg";
 };
@@ -253,6 +276,7 @@ export const PlasmicHomeCta = Object.assign(
   {
     // Helper components rendering sub-elements
     textInput: makeNodeComponent("textInput"),
+    img: makeNodeComponent("img"),
     button: makeNodeComponent("button"),
     svg: makeNodeComponent("svg"),
 

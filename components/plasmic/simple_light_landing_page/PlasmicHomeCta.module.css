@@ -130,6 +130,17 @@
   width: 24px;
   height: 24px;
 }
+.img {
+  position: relative;
+  object-fit: cover;
+  max-width: 100%;
+}
+.img > picture > img {
+  object-fit: cover;
+}
+.img > .__wab_img-spacer > img {
+  object-fit: cover;
+}
 .button:global(.__wab_instance) {
   position: relative;
 }
