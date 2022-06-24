@@ -38,7 +38,7 @@
     {
       "projectId": "fqtEpZVaJ8Zu5P3rrBToQ1",
       "projectApiToken": "nenmpZ8PbePSwine53p7lbmL4S2ZjmZvRazOg1Txnao7YiBHpODzkowY4nzCvTFUaolKCNodoS4gKBYH50Qg",
-      "projectName": "Simple Light Landing Page",
+      "projectName": "AI Advice Engine",
       "version": "latest",
       "cssFilePath": "plasmic/simple_light_landing_page/plasmic_simple_light_landing_page.module.css",
       "components": [
@@ -398,6 +398,11 @@
           "id": "ncjVg9Ldk0_Jme",
           "name": "hero-image",
           "filePath": "../public/plasmic/simple_light_landing_page/images/heroImage.png"
+        },
+        {
+          "id": "wDrd5DmAa",
+          "name": "image",
+          "filePath": "../public/plasmic/ai_advice_engine/images/image.png"
         }
       ],
       "indirect": false,
