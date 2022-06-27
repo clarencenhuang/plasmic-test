@@ -61,7 +61,6 @@ export const PlasmicHomeCta__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHomeCta__OverridesType = {
   root?: p.Flex<"div">;
-  img?: p.Flex<typeof p.PlasmicImg>;
   textInput?: p.Flex<typeof TextInput>;
   button?: p.Flex<typeof Button>;
   svg?: p.Flex<"svg">;
@@ -119,28 +118,8 @@ function PlasmicHomeCta__RenderFunc(props: {
           )}
           ml-model-id={"test-12332" as const}
         >
-          {"Here is a really good product advice"}
+          {"Here is a really good product advice Today"}
         </div>
-
-        <p.PlasmicImg
-          data-plasmic-name={"img"}
-          data-plasmic-override={overrides.img}
-          alt={""}
-          className={classNames(sty.img)}
-          displayHeight={"auto" as const}
-          displayMaxHeight={"none" as const}
-          displayMaxWidth={"100%" as const}
-          displayMinHeight={"0" as const}
-          displayMinWidth={"0" as const}
-          displayWidth={"auto" as const}
-          loading={"lazy" as const}
-          src={{
-            src: "/plasmic/ai_advice_engine/images/image.png",
-            fullWidth: 400,
-            fullHeight: 335,
-            aspectRatio: undefined
-          }}
-        />
 
         <div
           className={classNames(
@@ -204,8 +183,7 @@ function PlasmicHomeCta__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img", "textInput", "textbox", "button", "svg"],
-  img: ["img"],
+  root: ["root", "textInput", "textbox", "button", "svg"],
   textInput: ["textInput", "textbox"],
   button: ["button"],
   svg: ["svg"]
@@ -215,7 +193,6 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  img: typeof p.PlasmicImg;
   textInput: typeof TextInput;
   button: typeof Button;
   svg: "svg";
@@ -278,7 +255,6 @@ export const PlasmicHomeCta = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    img: makeNodeComponent("img"),
     textInput: makeNodeComponent("textInput"),
     button: makeNodeComponent("button"),
     svg: makeNodeComponent("svg"),
