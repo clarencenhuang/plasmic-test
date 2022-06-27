@@ -63,6 +63,7 @@
 .text__kFeth {
   position: relative;
   color: var(--token-TRf5pfsHwLE);
+  padding-bottom: 0px;
 }
 .freeBox___4WCnz {
   flex-direction: row;
