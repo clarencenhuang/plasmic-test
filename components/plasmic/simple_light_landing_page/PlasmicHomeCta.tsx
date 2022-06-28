@@ -118,7 +118,7 @@ function PlasmicHomeCta__RenderFunc(props: {
           )}
           ml-model-id={"test-12332" as const}
         >
-          {"Hello Eric, Good talking to you again!"}
+          {"Hello Carlos, Good talking to you again!"}
         </div>
 
         <div
@@ -148,7 +148,7 @@ function PlasmicHomeCta__RenderFunc(props: {
             data-plasmic-name={"button"}
             data-plasmic-override={overrides.button}
             className={classNames("__wab_instance", sty.button)}
-            color={"blue" as const}
+            color={"red" as const}
           >
             {"Buy It Now!"}
           </Button>
