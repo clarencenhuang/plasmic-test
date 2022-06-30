@@ -61,6 +61,7 @@ export const PlasmicHomeCta__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHomeCta__OverridesType = {
   root?: p.Flex<"div">;
+  img?: p.Flex<typeof p.PlasmicImg>;
   textInput?: p.Flex<typeof TextInput>;
   button?: p.Flex<typeof Button>;
   svg?: p.Flex<"svg">;
@@ -118,8 +119,28 @@ function PlasmicHomeCta__RenderFunc(props: {
           )}
           ml-model-id={"test-12332" as const}
         >
-          {"Hello Carlos, Good talking to you again!"}
+          {"Hello Teams, Good talking to you again!"}
         </div>
+
+        <p.PlasmicImg
+          data-plasmic-name={"img"}
+          data-plasmic-override={overrides.img}
+          alt={""}
+          className={classNames(sty.img)}
+          displayHeight={"auto" as const}
+          displayMaxHeight={"none" as const}
+          displayMaxWidth={"100%" as const}
+          displayMinHeight={"0" as const}
+          displayMinWidth={"0" as const}
+          displayWidth={"auto" as const}
+          loading={"lazy" as const}
+          src={{
+            src: "/plasmic/ai_integration_engine/images/screenShot20220630At21628PMpng.png",
+            fullWidth: 2086,
+            fullHeight: 242,
+            aspectRatio: undefined
+          }}
+        />
 
         <div
           className={classNames(
@@ -155,16 +176,14 @@ function PlasmicHomeCta__RenderFunc(props: {
         </p.Stack>
 
         <div
+          ai-advice-id={"test_advice" as const}
           className={classNames(
             projectcss.all,
             projectcss.__wab_text,
             sty.text__srQjf
           )}
-          {...{ "mxs model prop": "display" as const }}
-          mxs-model-cond={"output.sucess==true" as const}
-          mxs-model-id={"4bdb0750-f3ef-11ec-b939-0242ac120002" as const}
         >
-          {"{{gpuModel.output}}"}
+          {"{{advice.text2}}"}
         </div>
       </p.Stack>
 
@@ -183,7 +202,8 @@ function PlasmicHomeCta__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "textInput", "textbox", "button", "svg"],
+  root: ["root", "img", "textInput", "textbox", "button", "svg"],
+  img: ["img"],
   textInput: ["textInput", "textbox"],
   button: ["button"],
   svg: ["svg"]
@@ -193,6 +213,7 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  img: typeof p.PlasmicImg;
   textInput: typeof TextInput;
   button: typeof Button;
   svg: "svg";
@@ -255,6 +276,7 @@ export const PlasmicHomeCta = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    img: makeNodeComponent("img"),
     textInput: makeNodeComponent("textInput"),
     button: makeNodeComponent("button"),
     svg: makeNodeComponent("svg"),
