@@ -312,7 +312,7 @@
 .img__n0OIy > picture > img {
   object-fit: cover;
 }
-.img__n0OIy > .__wab_img-spacer > img {
+.img__n0OIy > :global(.__wab_img-spacer) > img {
   object-fit: cover;
 }
 .solutions:global(.__wab_instance) {
@@ -511,7 +511,7 @@
 .img__m2ERd > picture > img {
   object-fit: cover;
 }
-.img__m2ERd > .__wab_img-spacer > img {
+.img__m2ERd > :global(.__wab_img-spacer) > img {
   object-fit: cover;
 }
 .howItWorks:global(.__wab_instance) {

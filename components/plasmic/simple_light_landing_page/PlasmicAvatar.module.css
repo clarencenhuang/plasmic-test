@@ -17,6 +17,6 @@
 .img__faeWz > picture > img {
   object-fit: cover;
 }
-.img__faeWz > .__wab_img-spacer > img {
+.img__faeWz > :global(.__wab_img-spacer) > img {
   object-fit: cover;
 }

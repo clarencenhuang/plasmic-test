@@ -71,8 +71,6 @@ export type PlasmicFeatures__OverridesType = {
 
 export interface DefaultFeaturesProps {}
 
-export const defaultFeatures__Args: Partial<PlasmicFeatures__ArgsType> = {};
-
 function PlasmicFeatures__RenderFunc(props: {
   variants: PlasmicFeatures__VariantsArgs;
   args: PlasmicFeatures__ArgsType;
@@ -81,9 +79,22 @@ function PlasmicFeatures__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultFeatures__Args, props.args);
-  const $props = args;
+
   const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsbmkiWuKMfM5Jzn()
@@ -91,7 +102,7 @@ function PlasmicFeatures__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      {}
+      <Head></Head>
 
       <style>{`
         body {
@@ -432,12 +443,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicFeatures__ArgProps,
-      internalVariantPropNames: PlasmicFeatures__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicFeatures__ArgProps,
+          internalVariantPropNames: PlasmicFeatures__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicFeatures__RenderFunc({
       variants,
@@ -466,7 +481,15 @@ export const PlasmicFeatures = Object.assign(
 
     // Metadata about props expected for PlasmicFeatures
     internalVariantProps: PlasmicFeatures__VariantProps,
-    internalArgProps: PlasmicFeatures__ArgProps
+    internalArgProps: PlasmicFeatures__ArgProps,
+
+    // Page metadata
+    pageMetadata: {
+      title: "",
+      description: "",
+      ogImageSrc: "",
+      canonical: ""
+    }
   }
 );
 

@@ -79,8 +79,6 @@ export interface DefaultPlanProps {
   className?: string;
 }
 
-export const defaultPlan__Args: Partial<PlasmicPlan__ArgsType> = {};
-
 function PlasmicPlan__RenderFunc(props: {
   variants: PlasmicPlan__VariantsArgs;
   args: PlasmicPlan__ArgsType;
@@ -89,9 +87,22 @@ function PlasmicPlan__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultPlan__Args, props.args);
-  const $props = args;
+
   const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     <BaseCard
@@ -213,12 +224,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicPlan__ArgProps,
-      internalVariantPropNames: PlasmicPlan__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicPlan__ArgProps,
+          internalVariantPropNames: PlasmicPlan__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicPlan__RenderFunc({
       variants,

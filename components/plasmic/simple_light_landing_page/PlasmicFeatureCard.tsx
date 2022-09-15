@@ -82,9 +82,6 @@ export interface DefaultFeatureCardProps {
   className?: string;
 }
 
-export const defaultFeatureCard__Args: Partial<PlasmicFeatureCard__ArgsType> =
-  {};
-
 function PlasmicFeatureCard__RenderFunc(props: {
   variants: PlasmicFeatureCard__VariantsArgs;
   args: PlasmicFeatureCard__ArgsType;
@@ -93,9 +90,22 @@ function PlasmicFeatureCard__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultFeatureCard__Args, props.args);
-  const $props = args;
+
   const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     <p.Stack
@@ -236,12 +246,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicFeatureCard__ArgProps,
-      internalVariantPropNames: PlasmicFeatureCard__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicFeatureCard__ArgProps,
+          internalVariantPropNames: PlasmicFeatureCard__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicFeatureCard__RenderFunc({
       variants,

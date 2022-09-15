@@ -290,7 +290,7 @@
 .img___1Xvg > picture > img {
   object-fit: cover;
 }
-.img___1Xvg > .__wab_img-spacer > img {
+.img___1Xvg > :global(.__wab_img-spacer) > img {
   object-fit: cover;
 }
 .columns__urLuN {
@@ -382,7 +382,7 @@
 .img__brEWn > picture > img {
   object-fit: cover;
 }
-.img__brEWn > .__wab_img-spacer > img {
+.img__brEWn > :global(.__wab_img-spacer) > img {
   object-fit: cover;
 }
 .column__kbe9U {

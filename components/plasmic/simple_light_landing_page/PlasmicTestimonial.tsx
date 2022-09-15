@@ -65,9 +65,6 @@ export interface DefaultTestimonialProps {
   className?: string;
 }
 
-export const defaultTestimonial__Args: Partial<PlasmicTestimonial__ArgsType> =
-  {};
-
 function PlasmicTestimonial__RenderFunc(props: {
   variants: PlasmicTestimonial__VariantsArgs;
   args: PlasmicTestimonial__ArgsType;
@@ -76,9 +73,22 @@ function PlasmicTestimonial__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultTestimonial__Args, props.args);
-  const $props = args;
+
   const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     <div
@@ -222,12 +232,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicTestimonial__ArgProps,
-      internalVariantPropNames: PlasmicTestimonial__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicTestimonial__ArgProps,
+          internalVariantPropNames: PlasmicTestimonial__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicTestimonial__RenderFunc({
       variants,

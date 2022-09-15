@@ -66,8 +66,6 @@ export interface DefaultBulletProps {
   className?: string;
 }
 
-export const defaultBullet__Args: Partial<PlasmicBullet__ArgsType> = {};
-
 function PlasmicBullet__RenderFunc(props: {
   variants: PlasmicBullet__VariantsArgs;
   args: PlasmicBullet__ArgsType;
@@ -76,9 +74,22 @@ function PlasmicBullet__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultBullet__Args, props.args);
-  const $props = args;
+
   const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     <p.Stack
@@ -155,12 +166,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicBullet__ArgProps,
-      internalVariantPropNames: PlasmicBullet__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicBullet__ArgProps,
+          internalVariantPropNames: PlasmicBullet__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicBullet__RenderFunc({
       variants,

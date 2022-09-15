@@ -61,7 +61,6 @@ export const PlasmicHomeCta__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHomeCta__OverridesType = {
   root?: p.Flex<"div">;
-  img?: p.Flex<typeof p.PlasmicImg>;
   textInput?: p.Flex<typeof TextInput>;
   button?: p.Flex<typeof Button>;
   svg?: p.Flex<"svg">;
@@ -72,8 +71,6 @@ export interface DefaultHomeCtaProps {
   className?: string;
 }
 
-export const defaultHomeCta__Args: Partial<PlasmicHomeCta__ArgsType> = {};
-
 function PlasmicHomeCta__RenderFunc(props: {
   variants: PlasmicHomeCta__VariantsArgs;
   args: PlasmicHomeCta__ArgsType;
@@ -82,9 +79,22 @@ function PlasmicHomeCta__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultHomeCta__Args, props.args);
-  const $props = args;
+
   const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsbmkiWuKMfM5Jzn()
@@ -119,28 +129,8 @@ function PlasmicHomeCta__RenderFunc(props: {
           )}
           ml-model-id={"test-12332" as const}
         >
-          {"Hello Teams, Good talking to you again!"}
+          {"Hello Teams, Lets get some AI into your product."}
         </div>
-
-        <p.PlasmicImg
-          data-plasmic-name={"img"}
-          data-plasmic-override={overrides.img}
-          alt={""}
-          className={classNames(sty.img)}
-          displayHeight={"auto" as const}
-          displayMaxHeight={"none" as const}
-          displayMaxWidth={"100%" as const}
-          displayMinHeight={"0" as const}
-          displayMinWidth={"0" as const}
-          displayWidth={"auto" as const}
-          loading={"lazy" as const}
-          src={{
-            src: "/plasmic/ai_integration_engine/images/screenShot20220630At21628PMpng.png",
-            fullWidth: 2086,
-            fullHeight: 242,
-            aspectRatio: undefined
-          }}
-        />
 
         <div
           className={classNames(
@@ -202,8 +192,7 @@ function PlasmicHomeCta__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img", "textInput", "textbox", "button", "svg"],
-  img: ["img"],
+  root: ["root", "textInput", "textbox", "button", "svg"],
   textInput: ["textInput", "textbox"],
   button: ["button"],
   svg: ["svg"]
@@ -213,7 +202,6 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  img: typeof p.PlasmicImg;
   textInput: typeof TextInput;
   button: typeof Button;
   svg: "svg";
@@ -249,12 +237,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicHomeCta__ArgProps,
-      internalVariantPropNames: PlasmicHomeCta__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicHomeCta__ArgProps,
+          internalVariantPropNames: PlasmicHomeCta__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicHomeCta__RenderFunc({
       variants,
@@ -276,7 +268,6 @@ export const PlasmicHomeCta = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    img: makeNodeComponent("img"),
     textInput: makeNodeComponent("textInput"),
     button: makeNodeComponent("button"),
     svg: makeNodeComponent("svg"),

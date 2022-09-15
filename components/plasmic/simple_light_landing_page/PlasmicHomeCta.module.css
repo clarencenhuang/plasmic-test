@@ -59,17 +59,6 @@
   font-weight: 700;
   line-height: 1;
 }
-.img {
-  position: relative;
-  object-fit: cover;
-  max-width: 100%;
-}
-.img > picture > img {
-  object-fit: cover;
-}
-.img > .__wab_img-spacer > img {
-  object-fit: cover;
-}
 .text__kFeth {
   position: relative;
   color: var(--token-TRf5pfsHwLE);

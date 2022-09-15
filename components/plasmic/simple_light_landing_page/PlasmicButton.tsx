@@ -103,8 +103,6 @@ export interface DefaultButtonProps extends pp.BaseButtonProps {
   >;
 }
 
-export const defaultButton__Args: Partial<PlasmicButton__ArgsType> = {};
-
 function PlasmicButton__RenderFunc(props: {
   variants: PlasmicButton__VariantsArgs;
   args: PlasmicButton__ArgsType;
@@ -113,9 +111,22 @@ function PlasmicButton__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultButton__Args, props.args);
-  const $props = args;
+
   const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   const [isRootFocusVisibleWithin, triggerRootFocusVisibleWithinProps] =
     useTrigger("useFocusVisibleWithin", {
@@ -397,7 +408,6 @@ function useBehavior<P extends pp.BaseButtonProps>(
       endIconSlot: "endIcon",
       root: "root"
     },
-
     ref
   );
 
@@ -455,12 +465,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicButton__ArgProps,
-      internalVariantPropNames: PlasmicButton__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicButton__ArgProps,
+          internalVariantPropNames: PlasmicButton__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicButton__RenderFunc({
       variants,

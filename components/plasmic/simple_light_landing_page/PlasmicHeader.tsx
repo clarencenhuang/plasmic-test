@@ -68,8 +68,6 @@ export interface DefaultHeaderProps {
   className?: string;
 }
 
-export const defaultHeader__Args: Partial<PlasmicHeader__ArgsType> = {};
-
 function PlasmicHeader__RenderFunc(props: {
   variants: PlasmicHeader__VariantsArgs;
   args: PlasmicHeader__ArgsType;
@@ -78,9 +76,22 @@ function PlasmicHeader__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultHeader__Args, props.args);
-  const $props = args;
+
   const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsbmkiWuKMfM5Jzn()
@@ -107,7 +118,7 @@ function PlasmicHeader__RenderFunc(props: {
         data-plasmic-override={overrides.link}
         className={classNames(projectcss.all, projectcss.a, sty.link)}
         component={Link}
-        href={"/" as const}
+        href={`/`}
         platform={"nextjs"}
       >
         <LogoIcon
@@ -126,7 +137,7 @@ function PlasmicHeader__RenderFunc(props: {
         <Button
           className={classNames("__wab_instance", sty.button__ptjJ7)}
           color={"clear" as const}
-          link={"/features" as const}
+          link={`/features`}
           size={"compact" as const}
         >
           {"Features"}
@@ -135,7 +146,7 @@ function PlasmicHeader__RenderFunc(props: {
         <Button
           className={classNames("__wab_instance", sty.button__wDYv)}
           color={"clear" as const}
-          link={"/pricing" as const}
+          link={`/pricing`}
           size={"compact" as const}
         >
           {"Pricing"}
@@ -212,12 +223,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicHeader__ArgProps,
-      internalVariantPropNames: PlasmicHeader__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicHeader__ArgProps,
+          internalVariantPropNames: PlasmicHeader__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicHeader__RenderFunc({
       variants,

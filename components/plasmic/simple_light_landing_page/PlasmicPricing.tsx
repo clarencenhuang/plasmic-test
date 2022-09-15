@@ -73,8 +73,6 @@ export type PlasmicPricing__OverridesType = {
 
 export interface DefaultPricingProps {}
 
-export const defaultPricing__Args: Partial<PlasmicPricing__ArgsType> = {};
-
 function PlasmicPricing__RenderFunc(props: {
   variants: PlasmicPricing__VariantsArgs;
   args: PlasmicPricing__ArgsType;
@@ -83,9 +81,22 @@ function PlasmicPricing__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultPricing__Args, props.args);
-  const $props = args;
+
   const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsbmkiWuKMfM5Jzn()
@@ -93,7 +104,7 @@ function PlasmicPricing__RenderFunc(props: {
 
   return (
     <React.Fragment>
-      {}
+      <Head></Head>
 
       <style>{`
         body {
@@ -361,12 +372,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicPricing__ArgProps,
-      internalVariantPropNames: PlasmicPricing__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicPricing__ArgProps,
+          internalVariantPropNames: PlasmicPricing__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicPricing__RenderFunc({
       variants,
@@ -396,7 +411,15 @@ export const PlasmicPricing = Object.assign(
 
     // Metadata about props expected for PlasmicPricing
     internalVariantProps: PlasmicPricing__VariantProps,
-    internalArgProps: PlasmicPricing__ArgProps
+    internalArgProps: PlasmicPricing__ArgProps,
+
+    // Page metadata
+    pageMetadata: {
+      title: "",
+      description: "",
+      ogImageSrc: "",
+      canonical: ""
+    }
   }
 );
 

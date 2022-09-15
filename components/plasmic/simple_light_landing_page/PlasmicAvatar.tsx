@@ -63,8 +63,6 @@ export interface DefaultAvatarProps {
   className?: string;
 }
 
-export const defaultAvatar__Args: Partial<PlasmicAvatar__ArgsType> = {};
-
 function PlasmicAvatar__RenderFunc(props: {
   variants: PlasmicAvatar__VariantsArgs;
   args: PlasmicAvatar__ArgsType;
@@ -73,9 +71,22 @@ function PlasmicAvatar__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultAvatar__Args, props.args);
-  const $props = args;
+
   const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
+  const $props = {
+    ...args,
+    ...variants
+  };
 
   return (
     <div
@@ -159,12 +170,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicAvatar__ArgProps,
-      internalVariantPropNames: PlasmicAvatar__VariantProps
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicAvatar__ArgProps,
+          internalVariantPropNames: PlasmicAvatar__VariantProps
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicAvatar__RenderFunc({
       variants,
